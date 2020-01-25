@@ -1,0 +1,13 @@
+#Ceci est un fichier de configuration pour apache
+#-------Les prochaines lignes servent à afficher une url custom dans la bare d'adresse
+# On suit les liens symboliques 
+Options +FollowSymlinks 
+# Activation du module rewrite d'Apache 
+RewriteEngine On
+# Réécriture de index.html vers /
+# Syntaxe RewriteRule ^URL réelle$ URL affichée
+RewriteRule ^/index\.html$ / [NC,L]
+# Réécriture des URL 
+RewriteRule ^/admin/index.php$ /admin/ [NC,L]
+RewriteRule ^/public/index.php$ /public/ [NC,L]
+#-------Fin
