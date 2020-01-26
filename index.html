@@ -11,7 +11,7 @@
     <title>Gestion de tickets</title>
 </head>
 
-<body onload="showPassword(true)">
+<body>
     <div class="container">
         <div class="loginCard">
             <img src="assets/img/logo.png" class="logo3iL"></img>
@@ -20,7 +20,7 @@
                     Bienvenue au centre de gestion de plaintes du foyer.<br /> Nous sommes là pour vous aider, connectez-vous et dites nous tout
                 </p>
             </div>
-            <form class="form" method="POST">
+            <form class="form">
                 <div class="form-group">
                     <input class="form-control" type="email" placeholder="Adresse email" required>
                 </div>
@@ -28,20 +28,19 @@
                     <div class="input-group">
                         <input class="form-control" type="password" id="passswordBox" placeholder="Mot de passe" required>
                         <div class="input-group-append">
-                            <div class="input-group-text" onclick="showPassword()" id="eyeIcon"></div>
+                            <div class="input-group-text" onclick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye"></i></div>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="form-group">
-
-                </div>
-                <button type="submit" class="btn btn-link positive">Connexion</button>
+                <div id="errorField"></div>
+                <button type="submit" class="btn btn-link positive" id="submitButton">Connexion</button>
             </form>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <footer>
+        3iL <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+    </footer>
+    <script type="text/javascript" src="js/script.js"></script>
     <script src="js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/bootstrap/popper.min.js"></script>
