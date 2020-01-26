@@ -1,10 +1,99 @@
+/* Import de polices d'ecriture */
+
 @font-face {
     font-family: 'SF-Pro';
-    src: url('/assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');
-    font-weight: normal;
+    src: url('../assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    font-weight: 300;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'SF-Pro';
+    src: url('../assets/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF-Pro';
+    src: url('../assets/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF-Pro';
+    src: url('../assets/fonts/SF-Pro-Display-Light.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF-Pro';
+    src: url('../assets/fonts/SF-Pro-Display-ThinItalic.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+
+/* Fin import */
+
 body {
-    font-family: SF-Pro, sans-serif;
+    font-family: SF-Pro;
+    font-weight: 300;
+    min-width: 200px;
+    /* Suppose you want minimum width of 1000px*/
+    width: auto !important;
+    /* Firefox will set width as auto */
+    width: 1000px;
+}
+
+.loginCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 50px;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 15px #00000029;
+    border-radius: 15px;
+    opacity: 1;
+}
+
+.logo3iL {
+    margin: 15px;
+    max-height: 460px;
+    max-width: 270px;
+    opacity: 1;
+}
+
+.form {
+    margin: 15px;
+    min-width: 100px;
+}
+
+.positive {
+    letter-spacing: 0;
+    color: #3A00FF;
+}
+
+button {
+    text-decoration: none;
+}
+
+.semiBold {
+    font-family: SF-Pro;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #707070;
+    text-align: center;
 }

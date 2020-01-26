@@ -6,31 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Gestion de tickets</title>
 </head>
 
-<body>
+<body onload="showPassword(true)">
     <div class="container">
-        <form method="POST">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="loginCard">
+            <img src="assets/img/logo.png" class="logo3iL"></img>
+            <div class="semiBold">
+                <p>
+                    Bienvenue au centre de gestion de plaintes du foyer.<br /> Nous sommes là pour vous aider, connectez-vous et dites nous tout
+                </p>
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="email" placeholder="Adresse email" required>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="password" id="passswordBox" placeholder="Mot de passe" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text" onclick="showPassword()" id="eyeIcon"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                </div>
+                <button type="submit" class="btn btn-link positive">Connexion</button>
+            </form>
+        </div>
     </div>
-    <script src="js/jquery-3.4.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/bootstrap/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap/popper.min.js"></script>
 </body>
 
 </html>
