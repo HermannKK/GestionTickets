@@ -39,7 +39,7 @@
 /* Fin import */
 
 body {
-    font-family: SF-Pro;
+    font-family: SF-Pro !important;
     font-weight: 300;
     min-width: 200px;
     width: auto !important;
@@ -102,6 +102,7 @@ input {
     border-radius: 15px !important;
     border: none !important;
     opacity: 1;
+    min-width: 150px !important;
 }
 
 .input-group-append .input-group-text {
