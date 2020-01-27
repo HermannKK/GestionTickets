@@ -40,7 +40,7 @@
 
 body {
     font-family: SF-Pro !important;
-    font-weight: 300;
+    font-weight: 300 !important;
     min-width: 200px;
     width: auto !important;
     width: 1000px;
@@ -121,4 +121,13 @@ footer {
     font-weight: 200 !important;
     font-style: italic;
     font-size: small;
+}
+
+input {
+    font-weight: 200 !important;
+}
+
+.disconnect {
+    color: #FF0000 !important;
+    font-weight: 500 !important;
 }

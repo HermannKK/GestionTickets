@@ -1,3 +1,7 @@
+state = {
+    isLoading = false
+};
+
 function showPassword() {
     var input = document.getElementById("passswordBox");
     if (input.type === "password") {
@@ -13,8 +17,9 @@ function showPassword() {
 
 
 function handleConnection() {
+    state.isLoading = true
     submitButton = document.getElementById("submitButton");
-    if (this.state.isLoading) {
+    if (state.isLoading) {
         submitButton.innerHTML = '<div class="spinner-border text-primary"></div>';
         submitButton.disabled = true;
     } else {
