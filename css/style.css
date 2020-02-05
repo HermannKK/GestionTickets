@@ -38,12 +38,33 @@
 
 /* Fin import */
 
+html {
+    color: #707070 !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 body {
     font-family: SF-Pro !important;
     font-weight: 300 !important;
     min-width: 200px;
     width: auto !important;
     width: 1000px;
+    color: #707070 !important;
 }
 
 .loginCard {
@@ -130,4 +151,88 @@ input {
 .disconnect {
     color: #FF0000 !important;
     font-weight: 500 !important;
+}
+
+.myNav {
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.enTete {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    color: #707070 !important;
+    opacity: 1 !important;
+    font-size: 20px !important;
+}
+
+.texteCentre {
+    text-align: center !important;
+}
+
+.conteneur {
+    padding-top: 10px;
+}
+
+.date {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    color: #707070 !important;
+    opacity: 1 !important;
+    font-size: 15px !important;
+}
+
+.card {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 15px;
+    opacity: 1;
+    box-shadow: 0px 0px 15px #00000029;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.etat {
+    height: 17px;
+    width: 17px;
+    border-radius: 17px;
+    background-color: #3A00FF;
+    float: right;
+    padding-left: 0px !important;
+}
+
+.texteEtat {
+    text-align: right;
+    font-weight: 100;
+    font-style: italic;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
+}
+
+.description {
+    text-align: left;
+    font: Regular 15px/18px;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.nom {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    color: #707070 !important;
+    opacity: 1 !important;
+}
+
+.heure {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    color: #707070 !important;
+    opacity: 1 !important;
+    text-align: right;
+}
+
+.gauche {
+    margin-left: 15px;
 }

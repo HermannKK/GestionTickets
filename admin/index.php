@@ -1,3 +1,8 @@
+<?php
+    // if(!isset($_SESSION["role"])){
+    //     header("location:../");
+    // }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,6 +18,9 @@
 
 <body>
     <?php include_once('../php/components/navbar.php')?>
+    <div>
+        
+    </div>
     <script type="text/javascript" src="../js/script.js"></script>
     <script src="../js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>

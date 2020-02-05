@@ -28,7 +28,7 @@
                     <div class="input-group">
                         <input class="form-control" type="password" id="passswordBox" placeholder="Mot de passe" required>
                         <div class="input-group-append">
-                            <div class="input-group-text" onclick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye"></i></div>
+                            <div class="input-group-text" onClick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye"></i></div>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,38 @@
         </div>
     </div>
     <footer>
-        3iL <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+        © 3iL-Groupe 2020
     </footer>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+        var state = {
+            isLoading: false
+        }
+
+        function showPassword() {
+            var input = document.getElementById("passswordBox");
+            if (input.type === "password") {
+                input.type = "text";
+                document.getElementById("eyeIcon").innerHTML = '<i class="fa fa-eye-slash"></i>';
+                document.getElementById("eyeIcon").title = "cacher le mot de passe";
+            } else {
+                input.type = "password";
+                document.getElementById("eyeIcon").innerHTML = '<i class="fa fa-eye"></i>';
+                document.getElementById("eyeIcon").title = "Aficher le mot de passe";
+            }
+        }
+
+        function handleConnection() {
+            state.isLoading = true
+            submitButton = document.getElementById("submitButton");
+            if (state.isLoading) {
+                submitButton.innerHTML = '<div class="spinner-border text-primary"></div>';
+                submitButton.disabled = true;
+            } else {
+                submitButton.innerHTML = 'Connexion'
+                submitButton.disabled = fasle;
+            }
+        }
+    </script>
     <script src="js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/bootstrap/popper.min.js"></script>

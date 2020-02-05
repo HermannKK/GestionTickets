@@ -1,7 +1,3 @@
-state = {
-    isLoading = false
-};
-
 function showPassword() {
     var input = document.getElementById("passswordBox");
     if (input.type === "password") {
