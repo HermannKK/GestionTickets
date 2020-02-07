@@ -1,6 +1,12 @@
 <?php
+    include_once 'config.php';
     session_start();
-    include 'config.php';
+
+    function getActualHour(){
+        date_default_timezone_set("Europe/Paris");
+        return date("YmdHi");
+    }
+
     function emailExist($unsafeEmail){
         global $db;
         $email=$db->quote($unsafeEmail);
@@ -46,79 +52,116 @@
         return json_encode( $data );
     }
 
-    function submitTicket($unsafeEmail,$unsafeMessage){
+    function submitTicket($unsafeMessage){
         global $db;
-        $email=$db->quote($unsafeEmail);
+        $unsafeDate=getActualHour();
+        $date=$db->quote($unsafeDate);
+        $id=$db->quote($_SESSION['id']);
         $message=$db->quote($unsafeMessage);
-        $sql = "";
+        $sql = "INSERT INTO tickets (idClient, message, dateCreation) VALUES ($id, $message ,$date)";
         $query = $db->prepare($sql);
         if($query->execute()){
-
+            $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
         }
         else{
-
+            $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
         }
+        return json_encode( $data );
     }
 
     function addUser($unsafeEmail,$unsafePassword,$unsafeName,$unsafeRole){
         global $db;
-        $email=$db->quote($unsafeEmail);
-        $name=$db->quote($unsafeName);
-        $unHasedPassword=$db->quote($unsafePassword);
-        $Password=password_hash($unHasedPassword, PASSWORD_DEFAULT);
-        $role=$db->quote($unsafeRole);
-        $sql = "";
-        $query = $db->prepare($sql);
-        if($query->execute()){
-
+        if(!emailExist($unsafeEmail) && $_SESSION['role']=="admin"){
+            $email=$db->quote($unsafeEmail);
+            $name=$db->quote($unsafeName);
+            $unhasedPassword=$db->quote($unsafePassword);
+            $hasedPassword=password_hash($unhasedPassword, PASSWORD_DEFAULT);
+            $role=$db->quote($unsafeRole);
+            $sql = "INSERT INTO users (login, mdp, nom ,role) VALUES ($email, $hasedPassword ,$name, $role)";
+            $query = $db->prepare($sql);
+            if($query->execute()){
+                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
+            }
+            else{
+                $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
+            }
+        }else{
+            $data = ['error' => ['code'=>004,'message'=>'Cette adresse email est deja enregistrée'], 'success' => false];
         }
-        else{
-
-        }
+        return json_encode( $data );
     }
 
-    function cancelTicket(){
+    function cancelTicket($unsafeIdTicket){
         global $db;
-        $sql="";
+        $idTicket=$db->quote($unsafeIdTicket);
+        $etat=$db->quote("Annulé");
+        $unsafeDate=getActualHour();
+        $date=$db->quote($unsafeDate);
+        $sql="UPDATE tickets SET etat=$etat, dateFermeture=$date WHERE idTicket = $idTicket";
         $query = $db->prepare($sql);
         if($query->execute()){
-
+            $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
         }
         else{
-
+            $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
         }
+        return json_encode( $data );
     }
 
-    function takeTicket(){
+    function takeTicket($unsafeIdTicket){
         global $db;
-        $sql="";
-        $query = $db->prepare($sql);
-        if($query->execute()){
-
+        if($_SESSION['role']=="admin"){
+            $idTicket=$db->quote($unsafeIdTicket);
+            $idGestionnaire=$db->quote($_SESSION['id']);
+            $unsafeDate=getActualHour();
+            $date=$db->quote($unsafeDate);
+            $etat=$db->quote("traitement");
+            $sql="UPDATE tickets SET idGestionnaire = $idGestionnaire, etat=$etat, datePriseEnCharge=$date WHERE idTicket = $idTicket";
+            $query = $db->prepare($sql);
+            if($query->execute()){
+                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
+            }
+            else{
+                $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
+            }
         }
         else{
-            
+            $data = ['error' => ['code'=>006,'message'=>"Autorisations insufisante"], 'success' =>false];
         }
+        
+        return json_encode( $data );
     }
 
-    function ReplyTicket($idTicket, $idGestionnaire ){
+    function ReplyTicket($unsafeIdTicket, $unsafeMessage ){
         global $db;
-        $sql="";
-        $query = $db->prepare($sql);
-        if($query->execute()){
-
+        if($_SESSION['role']=="admin"){
+            $idTicket=$db->quote($unsafeIdTicket);
+            $idGestionnaire=$db->quote($_SESSION['id']);
+            $message=$db->quote($unsafeMessage);
+            $unsafeDate=getActualHour();
+            $date=$db->quote($unsafeDate);
+            $etat=$db->quote("fermé");
+            $sql="UPDATE tickets SET idGestionnaire = $idGestionnaire,reponse= $message, etat=$etat, dateFermeture=$date WHERE idTicket = $idTicket";
+            $query = $db->prepare($sql);
+            if($query->execute()){
+                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
+            }
+            else{
+                $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
+            }
         }
         else{
-            
+            $data = ['error' => ['code'=>006,'message'=>"Autorisations insufisante"], 'success' =>false];
         }
+        return json_encode( $data );
     }
 
-    function getTickets($role){
+    function getTickets(){
         global $db;
-        if($role=="admin"){
+        if($_SESSION['role']=="admin"){
             $sql = "SELECT idTicket, idClient,idGestionnaire,etat,message,reponse,dateCreation,datePriseEnCharge,dateFermeture FROM tickets";
         }
-        if($role=="client"){
+        if($_SESSION['role']=="client"){
             $id=$db->quote($_SESSION['id']);
             $sql = "SELECT idTicket, idClient,idGestionnaire,etat,message,reponse,dateCreation,datePriseEnCharge,dateFermeture FROM tickets WHERE idClient=$id ORDER BY dateCreation DESC";
         }
@@ -131,8 +174,18 @@
         }
         return json_encode( $data );
     }
+
+    function disconnect(){
+        if(session_destroy()){
+            $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
+        }
+        else{
+            $data = ['error' => ['code'=>007,'message'=>'Impossible de vous deconnecter'], 'success' => false];
+        }
+        return json_encode( $data );
+    }
     //exemple d'ijnjections sql
-    emailExist('"" or ""=""');
-    emailExist("105 OR 1=1");
-    emailExist("105; DROP TABLE users")
+    // emailExist('"" or ""=""');
+    // emailExist("105 OR 1=1");
+    // emailExist("105; DROP TABLE users")
 ?>

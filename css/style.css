@@ -293,10 +293,6 @@ input {
     text-decoration: none !important;
 }
 
-.submitButtton:hover .resetButon:hover {
-    text-decoration: none !important;
-}
-
 @media (min-width: 576px) {
     .zoneDeTexte {
         border: none;

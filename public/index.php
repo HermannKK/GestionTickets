@@ -163,6 +163,7 @@
             $('#textBox').val("");
             countLetters();
         }
+        setInterval(countLetters(), 1000);
     </script>
     <script src="../js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
