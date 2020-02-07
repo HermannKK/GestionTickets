@@ -21,7 +21,7 @@
     <div class="container-fluid conteneur">
         <div class="row">
             <div class="gauche col-md-4">
-                <div class="enTete mx-auto texteCentre">Mes cards</div>
+                <div class="enTete mx-auto texteCentre">Mes tickets</div>
                 <div class="antiScroll">
                     <div class="date">22-01-2020</div>
                     <!-- card -->
@@ -39,7 +39,7 @@
                             <div class="col-7 disconnect">Annuler</div>
                             <div class="col-4 texteEtat">En cours de traitement</div>
                             <div class="col-1">
-                                <div class="etat"></div>
+                                <div class="etat traitement"></div>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <div class="col-7 disconnect">Annuler</div>
                             <div class="col-4 texteEtat">En cours de traitement</div>
                             <div class="col-1">
-                                <div class="etat"></div>
+                                <div class="etat traitement"></div>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,43 @@
                             <div class="col-7 disconnect">Annuler</div>
                             <div class="col-4 texteEtat">En cours de traitement</div>
                             <div class="col-1">
-                                <div class="etat"></div>
+                                <div class="etat traitement"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="00003">
+                        <div class="row">
+                            <div class="col-6 nom">FOMO Doriane</div>
+                            <div class="col-6 heure">15:09</div>
+                        </div>
+                        <div class="row text-wrap text-break p">
+                            <span class="description ">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 disconnect">Annuler</div>
+                            <div class="col-4 texteEtat">termine</div>
+                            <div class="col-1">
+                                <div class="etat termine"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="00003">
+                        <div class="row">
+                            <div class="col-6 nom">FOMO Doriane</div>
+                            <div class="col-6 heure">15:09</div>
+                        </div>
+                        <div class="row text-wrap text-break p">
+                            <span class="description ">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 disconnect">Annuler</div>
+                            <div class="col-4 texteEtat">ouvert</div>
+                            <div class="col-1">
+                                <div class="etat ouvert"></div>
                             </div>
                         </div>
                     </div>
@@ -96,65 +132,38 @@
                             <div class="col-7 disconnect">Annuler</div>
                             <div class="col-4 texteEtat">En cours de traitement</div>
                             <div class="col-1">
-                                <div class="etat"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
-                                <div class="etat"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
-                                <div class="etat"></div>
+                                <div class="etat traitement"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="droite col-md-auto stciky">
+            <div class="droite col-md-6 col-md-offset-2">
                 <div class="enTete">Soummettre un nouveau ticket</div>
                 <div class="col card submit">
-                    <div class="row date">Dites nous en quoi nous pouvons vous aider</div>
-                    <div class="row">
-                        <input type="text" class="zoneTexte"/>
+                    <div class="row enTeteSubmit">Dites nous en quoi nous pouvons vous aider</div>
+                    <div class="row conteneurZone">
+                        <textarea onkeyup="countLetters()" maxlength="2000" class="zoneDeTexte" id="textBox" required></textarea>
                     </div>
                     <div class="row">
-                        <div class="col-8">1743 caractères restants</div>
-                        <div class="col-2 deconnexion">Reinitialiser</div>
-                        <div class="col-2 positive">Envoyer</div>
+                        <div class="col-8 ultraLigth" id="caracteresRestants">2000 caractères restants</div>
+                        <div class="col-2 resetButton disconnect btn btn-link" onclick="resetForm()">Reinitialiser</div>
+                        <div class="col-2 submitButton positive btn btn-link">Envoyer</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../js/script.js"></script>
+    <script>
+        function countLetters(){
+            var count=$("#textBox").val().length;
+            document.getElementById("caracteresRestants").innerHTML=2000-count + " caracteres restants"
+        }
+        function resetForm(){
+            $('#textBox').val("");
+            countLetters();
+        }
+    </script>
     <script src="../js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
