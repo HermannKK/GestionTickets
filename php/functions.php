@@ -7,6 +7,10 @@
         return date("YmdHi");
     }
 
+    function unquote(string $quoted){
+        return stripslashes(substr($quoted, 1, -1));
+    }
+
     function emailExist($unsafeEmail){
         global $db;
         $email=$db->quote($unsafeEmail);
@@ -14,14 +18,10 @@
         $query = $db->prepare($sql);
         $query->execute();
         $result = $query->fetch();
-        if(!isset($result)){
-            var_dump($result);
+        if(!isset($result['login'])){
             return false;
         }
         else{
-            echo $unsafeEmail;
-            echo $email;
-            var_dump($result);
             return true;
         }
     }
@@ -30,13 +30,13 @@
         global $db;
         $email=$db->quote($unsafeEmail);
         $password=$db->quote($unsafePassword);
-        if(emailExist($email)){
+        if(emailExist($unsafeEmail)){
             $sql = "SELECT id, login, mdp, nom, role FROM users WHERE login=$email";
             $query = $db->prepare($sql);
             $query->execute();
             $result = $query->fetch();
             if(password_verify($password,$result["mdp"])){
-                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
+                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true, 'role' =>$result["role"]];
                 $_SESSION["id"]=$result["id"];
                 $_SESSION["login"]=$result["login"];
                 $_SESSION["nom"]=$result["nom"];
@@ -71,15 +71,15 @@
 
     function addUser($unsafeEmail,$unsafePassword,$unsafeName,$unsafeRole){
         global $db;
-        if(!emailExist($unsafeEmail) && $_SESSION['role']=="admin"){
+        if(!emailExist($unsafeEmail) && $_SESSION['role']=='admin'){
             $email=$db->quote($unsafeEmail);
             $name=$db->quote($unsafeName);
             $unhasedPassword=$db->quote($unsafePassword);
             $hasedPassword=password_hash($unhasedPassword, PASSWORD_DEFAULT);
             $role=$db->quote($unsafeRole);
-            $sql = "INSERT INTO users (login, mdp, nom ,role) VALUES ($email, $hasedPassword ,$name, $role)";
+            $sql = "INSERT INTO users (login, mdp, nom ,role) VALUES (:email, :hasedPassword ,:name, :role)";
             $query = $db->prepare($sql);
-            if($query->execute()){
+            if($query->execute(['email'=>unquote($email),'hasedPassword'=>$hasedPassword ,"name"=>unquote($name),"role"=>unquote($role)])){
                 $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
             }
             else{
@@ -128,7 +128,6 @@
         else{
             $data = ['error' => ['code'=>006,'message'=>"Autorisations insufisante"], 'success' =>false];
         }
-        
         return json_encode( $data );
     }
 
@@ -182,10 +181,21 @@
         else{
             $data = ['error' => ['code'=>007,'message'=>'Impossible de vous deconnecter'], 'success' => false];
         }
+        var_dump($data);
         return json_encode( $data );
     }
+    
+    //Tests
     //exemple d'ijnjections sql
     // emailExist('"" or ""=""');
     // emailExist("105 OR 1=1");
-    // emailExist("105; DROP TABLE users")
+    // emailExist("105; DROP TABLE users");
+    // addUser("admin@test.com","test","admin test","admin");
+    //emailExist("admin@st.com");
+    //login("admin@test.com","test");
+    //getTickets();
+    //submitTicket("Hello je suis un test");
+    //takeTicket(3);
+    //ReplyTicket(3,"hello je suis une reponse");
+    //disconnect();
 ?>

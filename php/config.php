@@ -11,7 +11,6 @@
     try {
         
         $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, $options);
-        echo "Connected successfully";
         }
     catch(PDOException $e)
         {

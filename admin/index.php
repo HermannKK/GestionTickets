@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
     <?php include_once('../php/components/navbar.php')?>
     <div>
         

@@ -293,6 +293,10 @@ input {
     text-decoration: none !important;
 }
 
+.pointerOnHover:hover {
+    cursor: pointer !important;
+}
+
 @media (min-width: 576px) {
     .zoneDeTexte {
         border: none;

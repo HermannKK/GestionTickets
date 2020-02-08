@@ -1,5 +1,5 @@
 <?php
-    require_once("functions.php");
+    include_once("functions.php");
     header("Content-Type:application/json");
     if(isset($_POST["operation"])){
         $operation=$_POST["operation"];

@@ -16,7 +16,8 @@
     <title>Gestion de tickets</title>
 </head>
 
-<body>
+<body onload="getTickets()">
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
     <?php include_once('../php/components/navbar.php') ?>
     <div class="container-fluid conteneur">
         <div class="row">
@@ -36,9 +37,9 @@
                             </span>
                         </div>
                         <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
+                            <div class="col-5 disconnect">Annuler</div>
+                            <div class="col-5 texteEtat">En cours de traitement</div>
+                            <div class="col-2">
                                 <div class="etat traitement"></div>
                             </div>
                         </div>
@@ -148,26 +149,19 @@
                     <div class="row">
                         <div class="col-8 ultraLigth" id="caracteresRestants">2000 caractères restants</div>
                         <div class="col-2 resetButton disconnect btn btn-link" onclick="resetForm()">Reinitialiser</div>
-                        <div class="col-2 submitButton positive btn btn-link">Envoyer</div>
+                        <div class="col-2 submitButton positive btn btn-link" onclick="submitTicket()">Envoyer</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function countLetters(){
-            var count=$("#textBox").val().length;
-            document.getElementById("caracteresRestants").innerHTML=2000-count + " caracteres restants"
-        }
-        function resetForm(){
-            $('#textBox').val("");
-            countLetters();
-        }
-        setInterval(countLetters(), 1000);
-    </script>
     <script src="../js/bootstrap/jquery-3.4.1.slim.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        setInterval(getTickets, 3000);
+    </script>
 </body>
 
 </html>

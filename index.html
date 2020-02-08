@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
     <div class="container">
         <div class="loginCard">
             <img src="assets/img/logo.png" class="logo3iL"></img>
@@ -20,59 +21,30 @@
                     Bienvenue au centre de gestion de plaintes du foyer.<br /> Nous sommes là pour vous aider, connectez-vous et dites nous tout
                 </p>
             </div>
-            <form class="form">
+            <form class="form" onsubmit="login()">
                 <div class="form-group">
-                    <input class="form-control" type="email" placeholder="Adresse email" required>
+                    <input class="form-control" value="" id="emailBox" type="email" placeholder="Adresse email" required>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" type="password" id="passswordBox" placeholder="Mot de passe" required>
+                        <input class="form-control" type="password" value="" id="passwordBox" placeholder="Mot de passe" required>
                         <div class="input-group-append">
-                            <div class="input-group-text" onClick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye"></i></div>
+                            <div class="input-group-text" onClick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye pointerOnHover"></i></div>
                         </div>
                     </div>
                 </div>
-                <div id="errorField"></div>
-                <button type="submit" class="btn btn-link positive" id="submitButton">Connexion</button>
+                <div id="errorField" class="text-danger"></div>
+                <button type="submit" class="btn btn-link positive" id="submitButton" href="" onclick="login()"><span id="connexion">Connexion</span></button>
             </form>
         </div>
     </div>
     <footer>
         © 3iL-Groupe 2020
     </footer>
-    <script type="text/javascript">
-        var state = {
-            isLoading: false
-        }
-
-        function showPassword() {
-            var input = document.getElementById("passswordBox");
-            if (input.type === "password") {
-                input.type = "text";
-                document.getElementById("eyeIcon").innerHTML = '<i class="fa fa-eye-slash"></i>';
-                document.getElementById("eyeIcon").title = "cacher le mot de passe";
-            } else {
-                input.type = "password";
-                document.getElementById("eyeIcon").innerHTML = '<i class="fa fa-eye"></i>';
-                document.getElementById("eyeIcon").title = "Aficher le mot de passe";
-            }
-        }
-
-        function handleConnection() {
-            state.isLoading = true
-            submitButton = document.getElementById("submitButton");
-            if (state.isLoading) {
-                submitButton.innerHTML = '<div class="spinner-border text-primary"></div>';
-                submitButton.disabled = true;
-            } else {
-                submitButton.innerHTML = 'Connexion'
-                submitButton.disabled = fasle;
-            }
-        }
-    </script>
     <script src="js/bootstrap/jquery-3.4.1.slim.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
