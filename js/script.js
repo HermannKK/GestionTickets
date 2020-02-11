@@ -4,7 +4,7 @@ state={
 
 
 function showPassword() {
-    var input = document.getElementById("passswordBox");
+    var input = document.getElementById("passwordBox");
     if (input.type === "password") {
         input.type = "text";
         document.getElementById("eyeIcon").innerHTML = '<i class="fa fa-eye-slash pointerOnHover"></i>';
@@ -103,19 +103,25 @@ function getTickets(role){
 
 
 function renderForClient(data){
-        $("#root").empty()
+        $("#root").empty();
+        console.log(data.value);
         $("#loading").hide(500);
-        groupedData=reverseObject(state.tickets.groupByDate('dateCreation'));
-        groupedData.forEach(element=>{
-            key=element.key
-            date=splitDate(key);
-            $("#root").append("<div id='"+key+"'><div class='date'>"+date.day+"-"+ date.month+"-"+ date.year+"</div></div>");
-            _element=element.value;
-            _element.forEach(content=>{
-                renderTicket(""+key+"",content);
+        if(data.value.length==0){
+            $("#root").append("<div class='mx-auto texteCentre'>Vous n'avez aucun ticket actif</div>");
+        }
+        else{
+            groupedData=reverseObject(state.tickets.groupByDate('dateCreation'));
+            groupedData.forEach(element=>{
+                key=element.key
+                date=splitDate(key);
+                $("#root").append("<div id='"+key+"'><div class='date'>"+date.day+"-"+ date.month+"-"+ date.year+"</div></div>");
+                _element=element.value;
+                _element.forEach(content=>{
+                    renderTicket(""+key+"",content);
+                })
             })
-        })
-        $("#ticketList").show(500);
+            $("#ticketList").show(500);
+        }
 }
 
 

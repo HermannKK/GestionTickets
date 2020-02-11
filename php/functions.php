@@ -86,7 +86,13 @@
                 $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
             }
         }else{
-            $data = ['error' => ['code'=>004,'message'=>'Cette adresse email est deja enregistrée'], 'success' => false];
+            if(!isset($_SESSION['role'])){
+                $data = ['error' => ['code'=>004,'message'=>'Autorisation insifisante'], 'success' => false];
+            }
+            else{
+                $data = ['error' => ['code'=>004,'message'=>'Cette adresse email est deja enregistrée'], 'success' => false];
+            }
+            
         }
         return json_encode( $data );
     }
@@ -194,7 +200,8 @@
     // emailExist('"" or ""=""');
     // emailExist("105 OR 1=1");
     // emailExist("105; DROP TABLE users");
-    // addUser("admin@test.com","test","admin test","admin");
+    // addUser("client@test.com","test","client test","client");
+    // addUser("admin@test.com","test","client test","admin");
     //emailExist("admin@st.com");
     //login("admin@test.com","test");
     //getTickets();
