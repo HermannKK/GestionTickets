@@ -121,8 +121,6 @@ function renderForClient(data){
 
 function renderForAdmin(data,idGestionnaire){
     console.log(data.value.groupBy("idGestionnaire"));
-    _temp=data.value.groupBy("idGestionnaire")
-    console.log(_temp[idGestionnaire.toString()]);
     console.log(data.value.groupBy("etat"));
     console.log(data.userID)
 }
