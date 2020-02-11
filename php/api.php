@@ -25,8 +25,8 @@
             case "takeTicket":
                 echo(takeTicket($_POST['idTicket']));
                 break;
-            case "disconnect":
-                echo(disconnect());
+            case "deleteTicket":
+                echo(deleteTicket($_POST['idTicket']));
                 break;
             default :
                 $data = ['error' => ['code'=>005,'message'=>'Operation non reconnue'], 'success' => false];

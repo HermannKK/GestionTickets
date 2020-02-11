@@ -38,7 +38,7 @@
                             <a class="nav-link" href="#addUser">Ajouter un utilisateur</a>
                         </li>
                     </ul>
-                    <a class="nav-link ml-auto disconnect" href="" id="disconnectButton" onclick=""disconnect()">Deconnexion</a>
+                    <a class="nav-link ml-auto disconnect" id="disconnectButton" href="../php/disconnect.php">Deconnexion</a>
                 </div>
             ');
             }
@@ -53,7 +53,7 @@
                             <a class="nav-link" href="#SubmitTickets">Soumettre un nouveau ticket</a>
                         </li>
                     </ul>
-                    <a class="nav-link ml-auto disconnect" href="" id="disconnectButton" onclick=""disconnect()">Deconnexion</a>
+                    <a class="nav-link ml-auto disconnect" id="disconnectButton" href="../php/disconnect.php">Deconnexion</a>
                 </div>
             ');
             }

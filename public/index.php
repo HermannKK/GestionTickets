@@ -16,127 +16,18 @@
     <title>Gestion de tickets</title>
 </head>
 
-<body onload="getTickets()">
+<body>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
     <?php include_once('../php/components/navbar.php') ?>
     <div class="container-fluid conteneur">
         <div class="row">
             <div class="gauche col-md-4">
                 <div class="enTete mx-auto texteCentre">Mes tickets</div>
-                <div class="antiScroll">
-                    <div class="date">22-01-2020</div>
-                    <!-- card -->
-                    <div class="card col" id="00001">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-5 disconnect">Annuler</div>
-                            <div class="col-5 texteEtat">En cours de traitement</div>
-                            <div class="col-2">
-                                <div class="etat traitement"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fin card -->
-                    <div class="date">21-01-2020</div>
-                    <div class="card" id="00002">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
-                                <div class="etat traitement"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="date">20-01-2020</div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
-                                <div class="etat traitement"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">termine</div>
-                            <div class="col-1">
-                                <div class="etat termine"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">ouvert</div>
-                            <div class="col-1">
-                                <div class="etat ouvert"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" id="00003">
-                        <div class="row">
-                            <div class="col-6 nom">FOMO Doriane</div>
-                            <div class="col-6 heure">15:09</div>
-                        </div>
-                        <div class="row text-wrap text-break p">
-                            <span class="description ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id elit finibus, viverra nunc eu, auctor arcu. Suspendisse tempus finibus metus, ut pretium nisl auctor ac
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 disconnect">Annuler</div>
-                            <div class="col-4 texteEtat">En cours de traitement</div>
-                            <div class="col-1">
-                                <div class="etat traitement"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="progress" id="loading">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
+                </div>
+                <div class="antiScroll mx-auto" id="ticketList">
+                    <div id="root"></div>
                 </div>
             </div>
             <div class="droite col-md-6 col-md-offset-2">
@@ -147,9 +38,9 @@
                         <textarea onkeyup="countLetters()" maxlength="2000" class="zoneDeTexte" id="textBox" required></textarea>
                     </div>
                     <div class="row">
-                        <div class="col-8 ultraLigth" id="caracteresRestants">2000 caractères restants</div>
-                        <div class="col-2 resetButton disconnect btn btn-link" onclick="resetForm()">Reinitialiser</div>
-                        <div class="col-2 submitButton positive btn btn-link" onclick="submitTicket()">Envoyer</div>
+                        <div class="col-5 ultraLigth" id="caracteresRestants">2000 caractères restants</div>
+                        <div class="col-4 resetButton disconnect btn btn-link" onclick="resetForm()">Reinitialiser</div>
+                        <div class="col-3 submitButton positive btn btn-link" onclick="submitTicket()">Envoyer</div>
                     </div>
                 </div>
             </div>
@@ -160,7 +51,9 @@
     <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>
     <script>
-        setInterval(getTickets, 3000);
+        $( document ).ready(function() {
+            setInterval(getTickets, 300,"client");
+        });
     </script>
 </body>
 

@@ -126,7 +126,8 @@ input {
     min-width: 150px !important;
 }
 
-.input-group-append .input-group-text {
+.input-group-append,
+.input-group-text {
     border: none !important;
     background-color: white !important;
 }
@@ -151,6 +152,10 @@ input {
 .disconnect {
     color: #FF0000 !important;
     font-weight: 500 !important;
+}
+
+.disconnect:hover {
+    cursor: pointer !important;
 }
 
 .myNav {
@@ -192,6 +197,10 @@ input {
     border: none !important;
 }
 
+.ticket {
+    width: 540px;
+}
+
 .etat {
     height: 17px;
     width: 17px;
@@ -205,11 +214,15 @@ input {
 }
 
 .ouvert {
-    background-color: #FF0000;
+    background-color: #ffa500;
 }
 
-.termine {
+.fermé {
     background-color: #00FF66;
+}
+
+.Annulé {
+    background-color: #FF0000;
 }
 
 .texteEtat {
@@ -260,6 +273,9 @@ input {
     border-radius: 15px;
     padding: 15px;
     font-weight: 300 !important;
+    height: 410px;
+    width: 90vw;
+    resize: none;
 }
 
 .zoneDeTexte:focus {
@@ -275,6 +291,7 @@ input {
     font-weight: 200 !important;
     font-style: italic;
     text-align: left;
+    font-size: 79%;
 }
 
 .submit {
@@ -289,7 +306,8 @@ input {
     font-size: 15px !important;
 }
 
-.submitButtton .resetButon {
+.submitButtton,
+.resetButon {
     text-decoration: none !important;
 }
 
@@ -297,14 +315,27 @@ input {
     cursor: pointer !important;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     .zoneDeTexte {
         border: none;
         background-color: #EBEBEB;
         border-radius: 15px;
         padding: 15px;
         font-weight: 300 !important;
-        height: 410px;
+        height: 380px;
         width: 90vw;
     }
+}
+
+.popover-header {
+    text-align: center !important;
+}
+
+.popover-body {
+    height: fit-content !important;
+    padding: 15px !important;
+}
+
+.popover-body .btn {
+    margin-bottom: 10px !important;
 }

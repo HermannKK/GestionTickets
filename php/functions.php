@@ -36,7 +36,7 @@
             $query->execute();
             $result = $query->fetch();
             if(password_verify($password,$result["mdp"])){
-                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true, 'role' =>$result["role"]];
+                $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true, 'role' =>$result["role"],'id' =>$result["id"]];
                 $_SESSION["id"]=$result["id"];
                 $_SESSION["login"]=$result["login"];
                 $_SESSION["nom"]=$result["nom"];
@@ -158,15 +158,16 @@
     function getTickets(){
         global $db;
         if($_SESSION['role']=="admin"){
-            $sql = "SELECT idTicket, idClient,idGestionnaire,etat,message,reponse,dateCreation,datePriseEnCharge,dateFermeture FROM tickets";
+            $sql="SELECT idTicket, idClient, idGestionnaire, etat, message,reponse,dateCreation,datePriseEnCharge,dateFermeture,users.nom FROM tickets ,users WHERE tickets.idClient = users.id ORDER BY dateCreation DESC";
         }
         if($_SESSION['role']=="client"){
             $id=$db->quote($_SESSION['id']);
-            $sql = "SELECT idTicket, idClient,idGestionnaire,etat,message,reponse,dateCreation,datePriseEnCharge,dateFermeture FROM tickets WHERE idClient=$id ORDER BY dateCreation DESC";
+            $sql= "SELECT idTicket, idClient, idGestionnaire, etat, message,reponse,dateCreation,datePriseEnCharge,dateFermeture,users.nom FROM tickets ,users WHERE tickets.idClient = users.id AND idClient=$id ORDER BY dateCreation DESC";
         }
         $query = $db->prepare($sql);
         if($query->execute()){
-            $data = $query->fetchAll();
+            $partialData = $query->fetchAll();
+            $data=["userID"=>$_SESSION["id"],"value"=>$partialData];
         }
         else{
             $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
@@ -174,14 +175,17 @@
         return json_encode( $data );
     }
 
-    function disconnect(){
-        if(session_destroy()){
+    function deleteTicket($unsafeIdTicket){
+        global $db;
+        $idTicket=$db->quote($unsafeIdTicket);
+        $sql="DELETE FROM tickets WHERE idTicket = $idTicket";
+        $query = $db->prepare($sql);
+        if($query->execute()){
             $data = ['error' => ['code'=>NULL,'message'=>NULL], 'success' => true];
         }
         else{
-            $data = ['error' => ['code'=>007,'message'=>'Impossible de vous deconnecter'], 'success' => false];
+            $data = ['error' => ['code'=>003,'message'=>'requete non executée'], 'success' => false];
         }
-        var_dump($data);
         return json_encode( $data );
     }
     
