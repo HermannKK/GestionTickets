@@ -97,6 +97,7 @@ if (isset($_SESSION["role"]) && $_SESSION["role"] == "client") {
     <script>
         $(document).ready(function() {
             setInterval(getTickets, 300, "admin");
+            $('[data-toggle="popover"]').popover();
         });
     </script>
 </body>

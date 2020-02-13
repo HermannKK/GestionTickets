@@ -138,6 +138,7 @@ returnCurrentAdminTickets = (idGestionnaire, sortedData) => {
 }
 
 function renderForAdmin(_data, idGestionnaire) {
+    $('[data-toggle="popover"]').popover('hide')
     $(".ticketList").empty();
     $(".loading").hide(500);
     data = _data.value.groupBy("etat");
@@ -217,6 +218,7 @@ function isDifferent(oldData, newData) {
 
 
 function submitTicket() {
+    $('[data-toggle="popover"]').popover('hide')
     message = $("#textBox").val();
     var options = {
         url: "../php/api.php", //type de données attendue
@@ -339,6 +341,7 @@ Array.prototype.groupBy = function(prop) {
 
 
 cancelTicket = (idTicket) => {
+    $('[data-toggle="popover"]').popover('hide')
     var options = {
         url: "../php/api.php", //type de données attendue
         type: "POST",
@@ -360,6 +363,7 @@ cancelTicket = (idTicket) => {
 }
 
 takeTicket = (idTicket) => {
+    $('[data-toggle="popover"]').popover('hide');
     var options = {
         url: "../php/api.php", //type de données attendue
         type: "POST",
@@ -386,6 +390,7 @@ hideTicket = (idTicket) => {
 }
 
 deleteTicket = (idTicket) => {
+    $('[data-toggle="popover"]').popover('hide')
     hideTicket(idTicket)
     var options = {
         url: "../php/api.php", //type de données attendue
@@ -407,6 +412,7 @@ deleteTicket = (idTicket) => {
 }
 
 replyTicket = (idTicket) => {
+    $('[data-toggle="popover"]').popover('hide');
     reponse = $("#reponseBox" + idTicket).val();
     hideTicket(idTicket);
     var options = {

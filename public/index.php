@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="droite col-md-6 col-md-offset-2">
-                <div class="enTete">Soummettre un nouveau ticket</div>
+                <div class="enTete">Soumettre un nouveau ticket</div>
                 <div class="col card submit">
                     <div class="row enTeteSubmit">Dites nous en quoi nous pouvons vous aider</div>
                     <div class="row conteneurZone">
