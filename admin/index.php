@@ -1,7 +1,11 @@
 <?php
-    // if(!isset($_SESSION["role"])){
-    //     header("location:../");
-    // }
+session_start();
+if (!isset($_SESSION["role"])) {
+    header("location:../");
+}
+if (isset($_SESSION["role"]) && $_SESSION["role"] == "client") {
+    header("location:../public/");
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,29 +22,70 @@
 
 <body>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
-    <?php include_once('../php/components/navbar.php')?>
+    <?php include_once('../php/components/navbar.php') ?>
+    <div id="addUser" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ajout d'utilisateur</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errorFieldModal"></div>
+                    <form onsubmit="addUser()">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nameBox" placeholder="Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="emailBox" placeholder="Adresse email" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" type="password" value="" id="passwordBox" placeholder="Mot de passe" required autocomplete="current-password">
+                                <div class="input-group-append">
+                                    <div class="input-group-text" onClick="showPassword()" id="eyeIcon" title="Afficher le mot de passe"><i class="fa fa-eye pointerOnHover"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Droits</label>
+                            <select class="form-control" id="roleBox">
+                                <option value="admin">Gestionnaire</option>
+                                <option value="client">Client</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-default positive" data-dismiss="modal" onclick="addUser()">Soummettre</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="container-fluid conteneur">
         <div class="row">
             <div class="col-md-4 mx-auto">
                 <div class="enTete mx-auto texteCentre">Tickets fermés</div>
-                <div class="progress" id="loading">
+                <div class="progress loading">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
                 </div>
-                <div id="closedTickets"></div>
+                <div id="closedTickets" class="ticketList"></div>
             </div>
             <div class="col-md-4 mx-auto">
                 <div class="enTete mx-auto texteCentre">Mes prises en charges</div>
-                <div class="progress" id="loading">
+                <div class="progress loading">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
                 </div>
-                <div id="myTickets"></div>
+                <div id="myTickets" class="ticketList"></div>
             </div>
             <div class="col-md-4">
                 <div class="enTete mx-auto texteCentre">Tickets ouverts</div>
-                <div class="progress" id="loading">
+                <div class="progress loading">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
                 </div>
-                <div id="openedTickets"></div>
+                <div id="openTickets" class="ticketList"></div>
             </div>
         </div>
     </div>
@@ -49,9 +94,8 @@
     <script src="../js/bootstrap/popper.min.js"></script>
     <script type="text/javascript" src="../js/script.js"></script>
     <script>
-        $( document ).ready(function() {
-            getTickets("admin")
-            setInterval(getTickets, 300000,"admin");
+        $(document).ready(function() {
+            setInterval(getTickets, 300, "admin");
         });
     </script>
 </body>

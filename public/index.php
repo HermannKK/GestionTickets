@@ -1,7 +1,11 @@
 <?php
-// if(!isset($_SESSION["role"])){
-//     header("location:../");
-// }
+    session_start();
+    if(!isset($_SESSION["role"])){
+        header("location:../");
+    }
+    if(isset($_SESSION["role"]) && $_SESSION["role"]=="admin"){
+        header("location:../admin/");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,6 +57,7 @@
     <script>
         $( document ).ready(function() {
             setInterval(getTickets, 300,"client");
+            $('[data-toggle="popover"]').popover();
         });
     </script>
 </body>

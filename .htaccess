@@ -6,7 +6,7 @@ Options +FollowSymlinks
 RewriteEngine On
 # Réécriture de index.html vers /
 # Syntaxe RewriteRule ^URL réelle$ URL affichée
-RewriteRule ^/index\.html$ / [NC,L]
+RewriteRule ^/index\.php$ / [NC,L]
 # Réécriture des URL 
 RewriteRule ^/admin/index.php$ /admin/ [NC,L]
 RewriteRule ^/public/index.php$ /public/ [NC,L]

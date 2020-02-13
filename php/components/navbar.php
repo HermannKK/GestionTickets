@@ -13,10 +13,12 @@
 <body>
     <script src="../js/bootstrap/jquery-3.4.1.slim.min.js"></script>
     <script src="../js/bootstrap/popper.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap/bootstrap.js"></script>
     <script type="text/javascript" src="../js/script.js"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light myNav sticky-top">
-        <a class="navbar-brand" href="#"><?php session_start(); echo($_SESSION['nom'])?></a>
+
+        <a class="navbar-brand" href="#"><?php echo($_SESSION['nom'])?></a>
+        <?php if(isset($_SESSION["role"]) && $_SESSION["role"]=="admin"){echo('<a class="nav-link hiddenMd pointerOnHover" data-toggle="modal" data-target="#addUser">Ajouter un utilisateur</a>');}?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +37,7 @@
                             <a class="nav-link" href="#OpenTickets">Tickets ouverts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#addUser">Ajouter un utilisateur</a>
+                            <a class="nav-link" data-toggle="addUSer" data-target="#addUser">Ajouter un utilisateur</a>
                         </li>
                     </ul>
                     <a class="nav-link ml-auto disconnect" id="disconnectButton" href="../php/disconnect.php">Deconnexion</a>

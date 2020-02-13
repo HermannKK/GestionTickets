@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(isset($_SESSION["role"]) && $_SESSION["role"]=="admin"){
+        header("location:admin/");
+    }
+    if(isset($_SESSION["role"]) && $_SESSION["role"]=="client"){
+        header("location:public/");
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 

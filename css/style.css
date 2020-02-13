@@ -104,6 +104,11 @@ body {
 .positive {
     letter-spacing: 0;
     color: #3A00FF;
+    font-weight: 400;
+}
+
+.positive:hover {
+    cursor: pointer;
 }
 
 button {
@@ -172,6 +177,7 @@ input {
 
 .texteCentre {
     text-align: center !important;
+    justify-content: center !important;
 }
 
 .conteneur {
@@ -290,8 +296,8 @@ input {
 .ultraLigth {
     font-family: SF-Pro !important;
     font-weight: 200 !important;
-    font-style: italic;
-    text-align: left;
+    font-style: italic !important;
+    text-align: left !important;
     font-size: 79%;
 }
 
@@ -326,6 +332,15 @@ input {
         height: 380px;
         width: 90vw;
     }
+    .hiddenMd {
+        display: none;
+    }
+}
+
+@media (max-width: 990px) {
+    .hiddenMd {
+        display: none;
+    }
 }
 
 .popover-header {
@@ -339,4 +354,40 @@ input {
 
 .popover-body .btn {
     margin-bottom: 10px !important;
+}
+
+.fitParentWidth {
+    width: 100% !important;
+}
+
+.p15 {
+    padding: 15px !important;
+}
+
+.btop {
+    margin-top: 5px !important;
+    border-top: solid #EBEBEB 1px;
+    width: 100% !important;
+}
+
+.popover {
+    background-color: #FF0000;
+    border: 1px #FF0000 solid;
+}
+
+.popover-title {
+    color: blue;
+    font-size: 15px;
+}
+
+.popover-content {
+    color: red;
+    font-size: 10px;
+}
+
+
+/* Popover Arrow */
+
+.arrow {
+    border-right-color: none;
 }
