@@ -32,7 +32,7 @@ if (isset($_SESSION["role"]) && $_SESSION["role"] == "client") {
                 </div>
                 <div class="modal-body">
                     <div id="errorFieldModal"></div>
-                    <form onsubmit="addUser()">
+                    <form onsubmit="addUser()" id="addUserForm">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nameBox" placeholder="Nom" required>
                         </div>
@@ -54,11 +54,12 @@ if (isset($_SESSION["role"]) && $_SESSION["role"] == "client") {
                                 <option value="client">Client</option>
                             </select>
                         </div>
+                        <div id="addUserError" class="" role="alert" ></div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-default positive" data-dismiss="modal" onclick="addUser()">Soummettre</button>
+                    <button type="button" class="btn btn-default positive" id="addUserButton" onclick="addUser()">Soummettre</button>
                 </div>
             </div>
 

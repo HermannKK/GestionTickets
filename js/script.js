@@ -428,3 +428,42 @@ replyTicket = (idTicket) => {
     };
     $.ajax(options);
 }
+
+addUser = () => {
+    $("#addUserButton").attr("disabled", true);
+    email = $("#emailBox").val();
+    password = $("#passwordBox").val();
+    name = $("#nameBox").val();
+    role = $("#roleBox").val();
+    var options = {
+        url: "../php/api.php", //type de données attendue
+        type: "POST",
+        dataType: "json", //type de requette GET ou POST
+        data: {
+            operation: "addUser",
+            email: email,
+            password: password,
+            name: name,
+            role: role
+        },
+        success: function(data, status, xhr) {
+            if (data.error.message) {
+                document.getElementById("addUserForm").reset();
+                document.getElementById("addUserError").innerHTML = data.error.message;
+                $('#addUserError').attr('class', 'alert alert-danger');
+                $("#addUserButton").attr("disabled", false);
+            }
+            if (data.success) {
+                document.getElementById("addUserForm").reset();
+                document.getElementById("addUserError").innerHTML = "Utilisateur ajouté avec succes"
+                $('#addUserError').attr('class', 'alert alert-success');
+                $("#addUserButton").attr("disabled", false);
+                setTimeout($('#addUSer').modal('hide'), 3000)
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    };
+    $.ajax(options);
+}
